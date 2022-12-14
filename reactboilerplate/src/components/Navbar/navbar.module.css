@@ -1,0 +1,14 @@
+.mob_menu{
+    display: none;
+}
+.web_menu{
+    display: flex;
+}
+@media only screen and (max-width: 600px) {
+    .mob_menu{
+        display: flex;
+    }
+    .web_menu{
+        display: none;
+    }
+}

@@ -1,20 +1,15 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from "react-router-dom";
-import Home from "../screens/Home/Home";
+import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
 
-export const protectedRoute = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home/>
-  },
-  {
-    path: "about",
-    element: <div>About</div>,
-  },
-]);
+export const ProtectedLayout = () => {
+  const isLogin = useSelector((state) => state.AuthReducer.isLogin);
+  if (!isLogin) {
+    return <Navigate to="/login" />;
+  }
+
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
+};
